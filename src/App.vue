@@ -1,7 +1,8 @@
 <template>
   <div class="layout-wrapper">
     <header-app :showSidebar="showSidebar" @toggleSidebar="toggleSidebar" />
-    <main :class="{ shifted: showSidebar }">
+    <main :class="{ shifted: showSidebar }" style="min-height: 100vh">
+      <sidebar-right />
       <router-view></router-view>
     </main>
     <sidebar-app :showSidebar="showSidebar" />
@@ -11,11 +12,13 @@
 <script>
 import SidebarApp from '@/components/layout/SidebarApp.vue'
 import HeaderApp from '@/components/layout/HeaderApp.vue'
+import SidebarRight from '@/components/UX/SidebarRight.vue'
 
 export default {
   components: {
     SidebarApp,
-    HeaderApp
+    HeaderApp,
+    SidebarRight
   },
   data() {
     return {
