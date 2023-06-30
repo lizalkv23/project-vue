@@ -1,18 +1,21 @@
 <template>
   <section>
     <div class="container">
-      <div class="gallery">
-        <div
-          v-for="card in cards"
-          :key="card.id"
-          class="card"
-          :style="{ backgroundColor: card.backgroundColor }"
-        >
-          <div class="card-image">
-            <img :src="card.image" alt="Card Image" />
-          </div>
-          <div class="card-caption">
-            {{ card.caption }}
+      <div class="card">
+        <div class="gallery">
+          <div
+            v-for="card in cards"
+            :key="card.id"
+            class="card"
+            :style="{ backgroundColor: card.backgroundColor }"
+          >
+            <div class="card-caption absolute">
+              {{ card.caption }}
+            </div>
+            <div class="card-image">
+              <img :src="card.image" alt="Card Image" />
+            </div>
+            <Button label="Show more" severity="secondary" rounded class="button-card block" />
           </div>
         </div>
       </div>
@@ -24,41 +27,24 @@
 import seaImage from '@/assets/sea.jpg'
 import sea1Image from '@/assets/sea1.jpg'
 import sea11Image from '@/assets/sea11.jpg'
-import sea12Image from '@/assets/sea12.jpg'
-import sea13Image from '@/assets/sea13.jpg'
 export default {
   data() {
     return {
+      visibleRight: false,
       cards: [
-        { id: 1, image: seaImage, caption: 'Sea' },
-        { id: 2, image: sea1Image, caption: 'Sea' },
-        { id: 3, image: sea11Image, caption: 'Sea' },
-        { id: 5, image: sea13Image, caption: 'Sea' },
-        { id: 4, image: sea12Image, caption: 'Sea' },
-        { id: 7, image: sea11Image, caption: 'Sea' },
-        { id: 6, image: sea1Image, caption: 'Sea' },
-        { id: 67, image: sea12Image, caption: 'Sea' },
-        { id: 8, image: sea13Image, caption: 'Sea' }
+        { id: 1, image: seaImage, caption: 'CONVERSATION RATE' },
+        { id: 2, image: sea1Image, caption: 'AVG. ORDER VALUE' },
+        { id: 3, image: sea11Image, caption: 'ORDER QUANTITY' },
+        { id: 1, image: seaImage, caption: 'CONVERSATION RATE' },
+        { id: 2, image: sea1Image, caption: 'AVG. ORDER VALUE' },
+        { id: 3, image: sea11Image, caption: 'ORDER QUANTITY' }
       ]
     }
-  },
-  methods: {
-    generateRandomColor() {
-      const r = Math.floor(Math.random() * 256)
-      const g = Math.floor(Math.random() * 256)
-      const b = Math.floor(Math.random() * 256)
-      return `rgb(${r}, ${g}, ${b})`
-    }
-  },
-  created() {
-    this.cards.forEach((card) => {
-      card.backgroundColor = this.generateRandomColor()
-    })
   }
 }
 </script>
 
-<style scoped>
+<style>
 main {
   margin-top: 60px;
   padding: 1.5625rem;
@@ -68,17 +54,23 @@ main {
 main.shifted {
   margin-left: 275px;
 }
-.container {
+.info {
+  border-radius: 8px 0 0 8px !important;
+}
+.sidebar {
+  z-index: 11111111111 !important;
 }
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
+  max-height: 300px;
 }
 
 .card {
   padding: 10px;
   border-radius: 8px;
+  position: relative;
 }
 .card-image {
   padding-bottom: 50%;
@@ -92,10 +84,27 @@ main.shifted {
   height: 100%;
   object-fit: cover;
 }
-
+.button-card {
+  position: absolute !important;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #42d033 !important;
+  border: none !important;
+  color: #0f0f0f !important;
+}
+.button-card :hover {
+  color: #3c3c3c !important;
+}
 .card-caption {
-  margin-top: 10px;
   text-align: center;
-  color: #e9e6e6;
+  color: #0f0f0f;
+  top: 20px;
+  right: 50%;
+  transform: translate(50%, 50%);
+  z-index: 4;
+  background-color: #ffffff30;
+  border-radius: 20px;
+  padding: 5px;
 }
 </style>
