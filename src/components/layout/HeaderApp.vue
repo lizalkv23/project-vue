@@ -1,29 +1,41 @@
 <template>
-  <header>
-    <div class="logo">
-      Logo
-      <i class="pi pi-bars" @click="toggleSidebar" style="margin-left: 190px"></i>
+  <header class="flex align-items-center gap-4 justify-content-between fixed left-0 top-0 w-full">
+    <div class="font-semibold">
+      Logo <i class="pi pi-bars show-icon" @click="toggleSidebar"></i>
     </div>
-    <div class="search">
-      <input type="text" v-model="searchQuery" placeholder="Search" @input="searchItems" />
-      <i class="pi pi-search"></i>
+    <div class="p-d-flex p-ai-center">
+      <span class="p-input-icon-left">
+        <InputText v-model="value" placeholder="Search" class="search outline-none" />
+        <i class="pi pi-search" />
+      </span>
     </div>
     <div class="icons">
-      <i class="pi pi-user" @click="handleIconClick('login')"></i>
-      <i class="pi pi-bell" @click="handleIconClick('notification')"></i>
-      <i class="pi pi-globe" @click="handleIconClick('language')"></i>
-      <!-- Добавьте другие иконки здесь -->
+      <i class="pi pi-user" @click="visible = true"></i>
+      <Dialog v-model:visible="visible" modal :style="{ width: '30vw' }">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore iure minus ipsa
+          aliquam, qui pariatur obcaecati dolor reprehenderit quasi voluptatum numquam earum quos
+          nam facilis sapiente veritatis iste neque. In!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore iure minus ipsa
+          aliquam, qui pariatur obcaecati dolor reprehenderit quasi voluptatum numquam earum quos
+          nam facilis sapiente veritatis iste neque. In!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore iure minus ipsa
+          aliquam, qui pariatur obcaecati dolor reprehenderit quasi voluptatum numquam earum quos
+          nam facilis sapiente veritatis iste neque. In!
+        </p>
+      </Dialog>
+      <i class="pi pi-bell p-mr-2" @click="handleIconClick('notification')"></i>
+      <i class="pi pi-globe p-mr-2" @click="handleIconClick('language')"></i>
     </div>
-    <modal-dialog v-if="showModal" @close="showModal = false"></modal-dialog>
   </header>
 </template>
 
 <script>
-import ModalDialog from '@/components/UX/ModalDialog.vue'
 export default {
-  components: {
-    ModalDialog
-  },
   props: {
     showSidebar: Boolean
   },
@@ -31,23 +43,17 @@ export default {
     return {
       searchQuery: '',
       showSearch: false,
-      showModal: false
+      visible: false,
+      showModal: false,
+      value: null
     }
   },
   methods: {
     toggleSidebar() {
       this.$emit('toggleSidebar')
     },
-    handleIconClick(iconName) {
-      if (iconName === 'login') {
-        this.showModal = true // Показываем модальное окно при нажатии на иконку "Логин"
-      }
-      // Добавьте обработку клика для других иконок
-    },
     searchItems() {
-      // Функция поиска по буквам
       const query = this.searchQuery.toLowerCase()
-      // Фильтруем карточки галереи на основе поискового запроса
       this.cards.forEach((card) => {
         card.visible = card.caption.toLowerCase().includes(query)
       })
@@ -56,51 +62,35 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   height: 60px;
   background-color: #35906491;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 20px;
-  z-index: 9999;
+  z-index: 50;
 }
-
-.logo {
-  font-weight: bold;
+.show-icon {
+  margin-left: 190px;
 }
-
-.icons {
-  display: flex;
-  align-items: center;
-}
-
 .icons i {
   margin-left: 15px;
 }
+
 i {
   cursor: pointer;
   color: rgb(12, 12, 12);
 }
-.search {
-  display: flex;
-  align-items: center;
-}
 
-.search input[type='text'] {
-  margin-left: 10px;
-  width: 350px;
-  padding: 5px;
-  border: none;
+.search {
+  width: 400px;
+  border: none !important;
+  outline: none !important;
   border-radius: 4px;
-  background-color: #7876761e;
+  background-color: #7876761e !important;
   color: rgb(7, 7, 7);
-  outline: none;
+}
+.search:focus {
+  background-color: #5dcaab1e !important;
 }
 
 .search i.pi-search {
