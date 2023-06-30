@@ -17,9 +17,9 @@
         <i class="pi pi-envelope"></i>
         <span>contacts</span>
       </li>
-      <li @click="navigateTo('/help')">
+      <li @click="navigateTo('/data')">
         <i class="pi pi-question-circle"></i>
-        <span>help</span>
+        <span>Data Table</span>
       </li>
     </ul>
   </aside>
@@ -28,13 +28,13 @@
 <script>
 export default {
   props: {
-    showSidebar: Boolean,
+    showSidebar: Boolean
   },
   methods: {
     navigateTo(route) {
       this.$router.push(route)
-    },
-  },
+    }
+  }
 }
 </script>
 
