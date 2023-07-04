@@ -1,15 +1,43 @@
 <template>
-  <div class="about">
-    <h1>About</h1>
+  <div class="card flex justify-content-center">
+    <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-30rem" />
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+<script>
+export default {
+  data() {
+    return {
+      chartData: null,
+      chartOptions: {
+        plugins: {
+          legend: {
+            labels: {
+              usePointStyle: true
+            }
+          }
+        }
+      }
+    };
+  },
+  mounted() {
+    this.chartData = this.setChartData();
+  },
+  methods: {
+    setChartData() {
+      const documentStyle = getComputedStyle(document.body);
+
+      return {
+        labels: ['A', 'B', 'C'],
+        datasets: [
+          {
+            data: [540, 325, 702],
+            backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
+            hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
+          }
+        ]
+      };
+    }
   }
-}
-</style>
+};
+</script>
