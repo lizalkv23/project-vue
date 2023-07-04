@@ -1,26 +1,10 @@
 <template>
   <aside :class="{ show: showSidebar }">
     <ul>
-      <li @click="navigateTo('/')">
-        <i class="pi pi-home"></i>
-        <span>home</span>
-      </li>
-      <li @click="navigateTo('/gallery')">
-        <i class="pi pi-image"></i>
-        <span>gallery</span>
-      </li>
-      <li @click="navigateTo('/about')">
-        <i class="pi pi-info-circle"></i>
-        <span>about</span>
-      </li>
-      <li @click="navigateTo('/contacts')">
-        <i class="pi pi-envelope"></i>
-        <span>contacts</span>
-      </li>
-      <li @click="navigateTo('/data')">
-        <i class="pi pi-question-circle"></i>
-        <span>Data Table</span>
-      </li>
+        <li v-for="item in menuItems" :key="item.route" @click="navigateTo(item.route)">
+          <i :class="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </li>
     </ul>
   </aside>
 </template>
@@ -30,12 +14,25 @@ export default {
   props: {
     showSidebar: Boolean
   },
+  data() {
+    return {
+      menuItems: [
+        { route: '/', label: 'Home' , icon: 'pi pi-user'},
+        { route: '/gallery', label: 'Gallery', icon: 'pi pi-id-card' },
+        { route: '/about', label: 'About', icon: 'pi pi-prime' },
+        { route: '/chat', label: 'Chat', icon: 'pi pi-database' },
+        { route: '/data', label: 'Data Table', icon: 'pi pi-list' }
+      ],
+      activeRoute: null
+    };
+  },
   methods: {
     navigateTo(route) {
-      this.$router.push(route)
+      this.activeRoute = route;
+      this.$router.push(route);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -46,7 +43,7 @@ aside {
   margin-top: 60px;
   width: 275px;
   min-height: 100vh;
-  background-color: #9ea39cd4;
+  background-color: #acb8a7d4;
   transition: transform 0.3s;
   transform: translateX(-100%);
 }
@@ -59,8 +56,7 @@ aside.show {
   bottom: 0;
   min-height: 100vh;
   overflow: auto;
-  padding-bottom: 30px;
-  /* margin-top: 60px; */
+  padding-bottom: 1.875rem;
 }
 
 ul {
@@ -73,9 +69,22 @@ li {
   align-items: center;
   padding: 10px;
   cursor: pointer;
+  transition: all 0.5s;
 }
+li:hover{
+  background-color:#b4e7a2a6 ;
+  border-radius: 0.5rem;
+}
+span{
+  transition: all 0.4s;
+  display: block;
+  color: rgb(73, 72, 72);
+}
+li span:hover{
+  color: rgb(3, 3, 3);
 
+}
 i {
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 </style>
