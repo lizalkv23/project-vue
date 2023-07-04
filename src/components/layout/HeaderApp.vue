@@ -1,7 +1,7 @@
 <template>
   <header class="flex align-items-center gap-4 justify-content-between fixed left-0 top-0 w-full">
     <div class="font-semibold">
-      Logo <i class="pi pi-bars show-icon" @click="toggleSidebar"></i>
+      Logo <i class="pi pi-bars show-icon icon-hover" @click="toggleSidebar"></i>
     </div>
     <div class="p-d-flex p-ai-center">
       <span class="p-input-icon-left">
@@ -62,10 +62,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 header {
   height: 60px;
-  background-color: #35906491;
+  background-color: #5ebc076f;
   padding: 0 20px;
   z-index: 50;
 }
@@ -78,7 +78,7 @@ header {
 
 i {
   cursor: pointer;
-  color: rgb(12, 12, 12);
+  color: rgb(9, 9, 9);
 }
 
 .search {
@@ -101,5 +101,11 @@ i {
 
 .icons i.pi-user {
   cursor: pointer;
+}
+i{
+  transition: color 0.3s;
+}
+i:hover{
+  color: #949894;
 }
 </style>
