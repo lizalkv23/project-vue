@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import GalleryView from '@/views/GalleryView.vue'
 import AboutView from '@/views/AboutView.vue'
-import ContactsView from '@/views/ContactsView.vue'
+import ChatComponent from '@/views/ChatComponent.vue'
 import DataView from '@/views/DataView.vue'
 
 const router = createRouter({
@@ -24,9 +24,9 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/contacts',
-      name: 'ContactsView',
-      component: ContactsView
+      path: '/chat',
+      name: 'ChatComponent',
+      component: ChatComponent
     },
     {
       path: '/data',
