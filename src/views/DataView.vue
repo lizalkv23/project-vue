@@ -1,3 +1,4 @@
+
 <template>
   <div class="card">
     <DataView :value="products" :sortOrder="sortOrder" :sortField="sortField">
@@ -13,11 +14,9 @@
       <template #list="slotProps">
         <div class="col-12">
           <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-            <!-- <img
-              class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
+            <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
               :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`"
-              :alt="slotProps.data.name"
-            /> -->
+              :alt="slotProps.data.name" />
             <div
               class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
             >
@@ -51,56 +50,50 @@
   </div>
 </template>
 
-<script>
-// import { ProductService } from '@/service/ProductService'
+<script setup>
+import { ref, onMounted } from "vue";
+import { ProductService } from '@/service/ProductService';
 
-export default {
-  name: 'DataView',
-  data() {
-    return {
-      products: null,
-      sortKey: null,
-      sortOrder: null,
-      sortField: null,
-      sortOptions: [
-        { label: 'Price High to Low', value: '!price' },
-        { label: 'Price Low to High', value: 'price' }
-      ]
-    }
-  },
-  // mounted() {
-  //   // ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)))
-  // },
-  methods: {
-    getSeverity(product) {
-      switch (product.inventoryStatus) {
-        case 'INSTOCK':
-          return 'success'
+onMounted(() => {
+  ProductService.getProductsSmall().then((data) => (products.value = data.slice(0, 5)));
+});
 
-        case 'LOWSTOCK':
-          return 'warning'
+const products = ref();
+const sortKey = ref();
+const sortOrder = ref();
+const sortField = ref();
+const sortOptions = ref([
+  { label: 'Price High to Low', value: '!price' },
+  { label: 'Price Low to High', value: 'price' },
+]);
+const onSortChange = (event) => {
+  const value = event.value.value;
+  const sortValue = event.value;
 
-        case 'OUTOFSTOCK':
-          return 'danger'
-
-        default:
-          return null
-      }
-    },
-    onSortChange(event) {
-      const value = event.value.value
-      const sortValue = event.value
-
-      if (value.indexOf('!') === 0) {
-        this.sortOrder = -1
-        this.sortField = value.substring(1, value.length)
-        this.sortKey = sortValue
-      } else {
-        this.sortOrder = 1
-        this.sortField = value
-        this.sortKey = sortValue
-      }
-    }
+  if (value.indexOf('!') === 0) {
+    sortOrder.value = -1;
+    sortField.value = value.substring(1, value.length);
+    sortKey.value = sortValue;
   }
-}
+  else {
+    sortOrder.value = 1;
+    sortField.value = value;
+    sortKey.value = sortValue;
+  }
+};
+const getSeverity = (product) => {
+  switch (product.inventoryStatus) {
+    case 'INSTOCK':
+      return 'success';
+
+    case 'LOWSTOCK':
+      return 'warning';
+
+    case 'OUTOFSTOCK':
+      return 'danger';
+
+    default:
+      return null;
+  }
+};
 </script>
