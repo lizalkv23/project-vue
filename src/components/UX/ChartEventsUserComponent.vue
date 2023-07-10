@@ -7,7 +7,7 @@
 <script>
 export default {
    props: {
-      selectedCity: {
+      selectedDays: {
          type: Object
       }
    },
@@ -21,7 +21,7 @@ export default {
       this.updateChartData();
    },
    watch: {
-      selectedCity(newCity) {
+      selectedDays(Days) {
          this.updateChartData();
       }
    },
@@ -35,10 +35,10 @@ export default {
          let labels = [];
          let daysInPeriod = 0;
 
-         if (this.selectedCity && this.selectedCity.name === '1-7') {
+         if (this.selectedDays && this.selectedDays.name === '1-7') {
             labels = this.getLabels(7, currentDate);
             daysInPeriod = 7;
-         } else if (this.selectedCity && this.selectedCity.name === '1-30') {
+         } else if (this.selectedDays && this.selectedDays.name === '1-30') {
             labels = this.getLabels(30, currentDate).filter((day) => (day + 2) % 3 === 0);
             daysInPeriod = 30;
          }

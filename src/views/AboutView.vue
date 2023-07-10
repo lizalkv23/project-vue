@@ -4,12 +4,12 @@
       <template #title>
         <div class="card flex justify-content-between">
           <div> Statystyki użytkownika </div>
-          <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Number"
+          <Dropdown v-model="selectedDays" :options="days" optionLabel="name" placeholder="Number"
             class="w-full md:w-14rem" />
         </div>
       </template>
       <template #content>
-        <ChartEventsUserComponent :selectedCity="selectedCity" />
+        <ChartEventsUserComponent :selectedDays="selectedDays" />
       </template>
     </Card>
   </div>
@@ -24,8 +24,8 @@ export default {
   },
   data() {
     return {
-      selectedCity: null,
-      cities: [
+      selectedDays: null,
+      days: [
         { name: '1-7' },
         { name: '1-30' }
       ]
