@@ -1,43 +1,43 @@
 <template>
-  <div class="card flex justify-content-center">
-    <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-30rem" />
+  <div class="chart-col">
+    <Card style="width: auto; background-color: rgba(95, 93, 93, 0.355)">
+      <template #title>
+        <div class="card flex justify-content-between">
+          <div> Statystyki użytkownika </div>
+          <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Number"
+            class="w-full md:w-14rem" />
+        </div>
+      </template>
+      <template #content>
+        <ChartEventsUserComponent :selectedCity="selectedCity" />
+      </template>
+    </Card>
   </div>
 </template>
 
 <script>
+import ChartEventsUserComponent from '@/components/UX/ChartEventsUserComponent.vue';
+
 export default {
+  components: {
+    ChartEventsUserComponent
+  },
   data() {
     return {
-      chartData: null,
-      chartOptions: {
-        plugins: {
-          legend: {
-            labels: {
-              usePointStyle: true
-            }
-          }
-        }
-      }
+      selectedCity: null,
+      cities: [
+        { name: '1-7' },
+        { name: '1-30' }
+      ]
     };
   },
-  mounted() {
-    this.chartData = this.setChartData();
-  },
-  methods: {
-    setChartData() {
-      const documentStyle = getComputedStyle(document.body);
-
-      return {
-        labels: ['A', 'B', 'C'],
-        datasets: [
-          {
-            data: [540, 325, 702],
-            backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
-            hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
-          }
-        ]
-      };
-    }
-  }
 };
 </script>
+
+<style lang="scss">
+.chart-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.875rem;
+}
+</style>
