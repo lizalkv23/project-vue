@@ -16,8 +16,11 @@ import DataView from 'primevue/dataview'
 import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions'
 import Tag from 'primevue/tag'
 import Dropdown from 'primevue/dropdown'
-import Chart from 'primevue/chart';
-
+import Chart from 'primevue/chart'
+import Card from 'primevue/card'
+import Calendar from 'primevue/calendar'
+import SplitButton from 'primevue/splitbutton'
+import TabMenu from 'primevue/tabmenu'
 
 
 const app = createApp(App)
@@ -34,6 +37,10 @@ app.component('Rating', Rating)
 app.component('Tag', Tag)
 app.component('Dropdown', Dropdown)
 app.component('Chart', Chart)
+app.component('Card', Card)
+app.component('Calendar', Calendar)
+app.component('SplitButton', SplitButton)
+app.component('TabMenu', TabMenu)
 
 
 app.use(router)
