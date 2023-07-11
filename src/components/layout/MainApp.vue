@@ -3,12 +3,7 @@
     <div class="container">
       <div class="card">
         <div class="gallery">
-          <div
-            v-for="card in cards"
-            :key="card.id"
-            class="card"
-            :style="{ backgroundColor: card.backgroundColor }"
-          >
+          <div v-for="card in cards" :key="card.id" class="card" :style="{ backgroundColor: card.backgroundColor }">
             <div class="card-caption absolute">
               {{ card.caption }}
             </div>
@@ -54,12 +49,15 @@ main {
 main.shifted {
   margin-left: 275px;
 }
+
 .info {
   border-radius: 8px 0 0 8px !important;
 }
+
 .sidebar {
   z-index: 11111111111 !important;
 }
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -72,10 +70,12 @@ main.shifted {
   border-radius: 8px;
   position: relative;
 }
+
 .card-image {
   padding-bottom: 50%;
   position: relative;
 }
+
 .card-image img {
   position: absolute;
   top: 0;
@@ -84,6 +84,7 @@ main.shifted {
   height: 100%;
   object-fit: cover;
 }
+
 .button-card {
   position: absolute !important;
   bottom: 20px;
@@ -93,9 +94,11 @@ main.shifted {
   border: none !important;
   color: #0f0f0f !important;
 }
+
 .button-card :hover {
   color: #3c3c3c !important;
 }
+
 .card-caption {
   text-align: center;
   color: #0f0f0f;
