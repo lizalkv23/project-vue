@@ -2,6 +2,9 @@
   <div class="layout-wrapper">
     <header-app :showSidebar="showSidebar" @toggleSidebar="toggleSidebar" />
     <main :class="{ shifted: showSidebar }" style="min-height: 100vh">
+      <div class="card">
+        <TabMenu :model="items" />
+      </div>
       <sidebar-right />
       <router-view></router-view>
     </main>
@@ -22,7 +25,39 @@ export default {
   },
   data() {
     return {
-      showSidebar: true
+      showSidebar: true,
+      items: [
+        {
+          label: 'Home',
+          icon: 'pi pi-fw pi-home',
+          to: '/'
+        },
+        {
+          label: 'List',
+          icon: 'pi pi-fw pi-calendar',
+          to: '/list'
+        },
+        {
+          label: 'Show',
+          icon: 'pi pi-fw pi-file',
+          to: '/show'
+        },
+        {
+          label: 'Create',
+          icon: ' pi pi-fw pi-pencil',
+          to: '/create'
+        },
+        {
+          label: 'Form',
+          icon: 'pi pi-check-square',
+          to: '/form'
+        },
+        {
+          label: 'Update',
+          icon: 'pi pi-fw pi-cog',
+          to: '/update'
+        }
+      ]
     }
   },
   methods: {
