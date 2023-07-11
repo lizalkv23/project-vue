@@ -19,6 +19,7 @@
 import ChartEventsUserComponent from '@/components/UX/ChartEventsUserComponent.vue';
 
 export default {
+  name: 'about',
   components: {
     ChartEventsUserComponent
   },

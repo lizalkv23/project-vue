@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'chat',
   data() {
     return {
       chartData: null,
