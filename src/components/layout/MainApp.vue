@@ -23,6 +23,7 @@ import seaImage from '@/assets/sea.jpg'
 import sea1Image from '@/assets/sea1.jpg'
 import sea11Image from '@/assets/sea11.jpg'
 export default {
+  name: 'main',
   data() {
     return {
       visibleRight: false,
