@@ -35,27 +35,27 @@ export default {
         {
           label: 'List',
           icon: 'pi pi-fw pi-calendar',
-          to: '/list'
+          to: '/admin/list'
         },
         {
           label: 'Show',
           icon: 'pi pi-fw pi-file',
-          to: '/show'
+          to: '/admin/show'
         },
         {
           label: 'Create',
           icon: ' pi pi-fw pi-pencil',
-          to: '/create'
+          to: '/admin/create'
         },
         {
           label: 'Form',
           icon: 'pi pi-check-square',
-          to: '/form'
+          to: '/admin/form'
         },
         {
           label: 'Update',
           icon: 'pi pi-fw pi-cog',
-          to: '/update'
+          to: '/admin/update'
         }
       ]
     }
