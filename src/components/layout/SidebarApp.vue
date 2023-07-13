@@ -1,10 +1,10 @@
 <template>
   <aside :class="{ show: showSidebar }">
     <ul>
-        <li v-for="item in menuItems" :key="item.route" @click="navigateTo(item.route)">
-          <i :class="item.icon"></i>
-          <span>{{ item.label }}</span>
-        </li>
+      <li v-for="item in menuItems" :key="item.route" @click="navigateTo(item.route)">
+        <i :class="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </li>
     </ul>
   </aside>
 </template>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       menuItems: [
-        { route: '/', label: 'Home' , icon: 'pi pi-user'},
+        { route: '/', label: 'Home', icon: 'pi pi-user' },
         { route: '/gallery', label: 'Gallery', icon: 'pi pi-id-card' },
         { route: '/about', label: 'About', icon: 'pi pi-prime' },
         { route: '/chat', label: 'Chat', icon: 'pi pi-database' },
@@ -71,19 +71,23 @@ li {
   cursor: pointer;
   transition: all 0.5s;
 }
-li:hover{
-  background-color:#b4e7a2a6 ;
+
+li:hover {
+  background-color: #b4e7a2a6;
   border-radius: 0.5rem;
 }
-span{
+
+span {
   transition: all 0.4s;
   display: block;
   color: rgb(73, 72, 72);
 }
-li span:hover{
+
+li span:hover {
   color: rgb(3, 3, 3);
 
 }
+
 i {
   margin-right: 0.625rem;
 }
