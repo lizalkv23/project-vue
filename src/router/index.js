@@ -5,11 +5,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'main',
       meta: {
-        title: "Home"
+        title: "Gallery"
       },
-      component: () => import('@/views/HomeView.vue')
+      component: () => import('@/components/layout/MainApp.vue')
     },
     {
       path: '/gallery',
@@ -44,45 +44,45 @@ const router = createRouter({
       component: () => import('@/views/DataView.vue')
     },
     {
-      path: '/list',
-      name: 'list',
-      meta: {
-        title: "List"
+      path: '/admin ',
+      name: 'home',
+      redirect: {
+        name: 'admin.list'
       },
-      component: () => import('@/components/users/List.vue')
-    },
-    {
-      path: '/show',
-      name: 'show',
-      meta: {
-        title: "Show"
-      },
-      component: () => import('@/components/users/Show.vue')
-    },
-    {
-      path: '/create',
-      name: 'create',
-      meta: {
-        title: "Create"
-      },
-      component: () => import('@/components/users/Create.vue')
-    },
-    {
-      path: '/form',
-      name: 'form',
-      meta: {
-        title: "Form"
-      },
-      component: () => import('@/components/users/Form.vue')
-    },
-    {
-      path: '/update',
-      name: 'update',
-      meta: {
-        title: "Update"
-      },
-      component: () => import('@/components/users/Update.vue')
-    },
+      component: () => import("@/views/admin/HomeView.vue"),
+      children: [
+        {
+          path: '/admin/list',
+          name: 'admin.list',
+          meta: { title: 'Events in the app', permission: 'list.read' },
+          component: () => import('@/views/admin/roles/List.vue')
+        },
+        {
+          path: '/admin/show',
+          name: 'admin.show',
+          meta: { title: 'Events in the app', permission: 'show.read' },
+          component: () => import('@/views/admin/roles/Show.vue'),
+        },
+        {
+          path: '/admin/update',
+          name: 'admin.update',
+          meta: { title: 'Events in the app', permission: 'update.read' },
+          component: () => import('@/views/admin/roles/Update.vue'),
+        },
+        {
+          path: '/admin/form',
+          name: 'admin.form',
+          meta: { title: 'Events in the app', permission: 'form.read' },
+          component: () => import('@/views/admin/roles/Form.vue'),
+        },
+        {
+          path: '/admin/create',
+          name: 'admin.create',
+          meta: { title: 'Events in the app', permission: 'create.read' },
+          component: () => import('@/views/admin/roles/Create.vue'),
+        },
+      ]
+    }
   ]
 })
 
