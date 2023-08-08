@@ -21,8 +21,8 @@ import Card from 'primevue/card'
 import Calendar from 'primevue/calendar'
 import SplitButton from 'primevue/splitbutton'
 import TabMenu from 'primevue/tabmenu'
-
-
+import Carousel from 'primevue/carousel'
+import Textarea from 'primevue/textarea'
 const app = createApp(App)
 app.use(PrimeVue)
 
@@ -41,6 +41,8 @@ app.component('Card', Card)
 app.component('Calendar', Calendar)
 app.component('SplitButton', SplitButton)
 app.component('TabMenu', TabMenu)
+app.component('Carousel', Carousel)
+app.component('Textarea', Textarea)
 
 
 app.use(router)

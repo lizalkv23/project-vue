@@ -7,9 +7,8 @@
 <script>
 export default {
    props: {
-      selectedDays: {
-         type: Object,
-         required: true,
+      selectedCity: {
+         type: Object
       }
    },
    data() {
@@ -22,7 +21,7 @@ export default {
       this.updateChartData();
    },
    watch: {
-      selectedDays(Days) {
+      selectedCity(newCity) {
          this.updateChartData();
       }
    },
@@ -36,11 +35,11 @@ export default {
          let labels = [];
          let daysInPeriod = 0;
 
-         if (this.selectedDays && this.selectedDays.name === '1-7') {
-            labels = this.getLabels(7, currentDate);
+         if (this.selectedCity === 7) {
+            labels = Array.from({ length: 7 }, (_, index) => currentDate.getDate() - index).reverse();
             daysInPeriod = 7;
-         } else if (this.selectedDays && this.selectedDays.name === '1-30') {
-            labels = this.getLabels(30, currentDate).filter((day) => (day + 2) % 3 === 0);
+         } else if (this.selectedCity === 30) {
+            labels = Array.from({ length: 30 }, (_, index) => currentDate.getDate() - index).reverse();
             daysInPeriod = 30;
          }
 
@@ -58,45 +57,11 @@ export default {
                   pointRadius: 0,
                   borderWidth: 2.5,
                   hidden: false
-               },
-               {
-                  data: Array.from({ length: daysInPeriod }, () => Math.floor(Math.random() * (max - min + 1)) + min),
-                  fill: false,
-                  borderColor: documentStyle.getPropertyValue('--red-300'),
-                  tension: 0.4,
-                  pointRadius: 0,
-                  borderWidth: 2.5,
-                  hidden: false
                }
             ]
          };
 
          this.chartOptions = this.setChartOptions();
-      },
-      getLabels(days, currentDate) {
-         const labels = [];
-         const currentDay = currentDate.getDate();
-         const currentMonth = currentDate.getMonth();
-         const currentYear = currentDate.getFullYear();
-
-         if (currentDay >= days) {
-            for (let i = days - 1; i >= 0; i--) {
-               labels.push(currentDay - i);
-            }
-         } else {
-            const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
-            const prevMonthStartIndex = prevMonthLastDay - (days - currentDay) + 1;
-
-            for (let i = prevMonthStartIndex; i <= prevMonthLastDay; i++) {
-               labels.push(i);
-            }
-
-            for (let i = 1; i <= currentDay; i++) {
-               labels.push(i);
-            }
-         }
-
-         return labels
       },
       setChartOptions() {
          const documentStyle = getComputedStyle(document.documentElement);

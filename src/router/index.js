@@ -20,6 +20,14 @@ const router = createRouter({
       component: () => import('@/views/GalleryView.vue')
     },
     {
+      path: '/payment',
+      name: 'payment',
+      meta: {
+        title: "Payment"
+      },
+      component: () => import('@/views/PaymentTable.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       meta: {
@@ -73,7 +81,7 @@ const router = createRouter({
           path: '/admin/form',
           name: 'admin.form',
           meta: { title: 'Events in the app', permission: 'form.read' },
-          component: () => import('@/views/admin/roles/Form.vue'),
+          component: () => import('@/views/admin/roles/FormApp.vue'),
         },
         {
           path: '/admin/create',
